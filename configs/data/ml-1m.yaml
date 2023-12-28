@@ -1,0 +1,20 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+DATA:
+  root: ./dataset
+  name: 'movielens'
+
+FED:
+  num_clients: 60
+  agg_epochs: 1000
+  local_epochs: 2
+
+DATALOADER:
+  batch_size: 256
+
+TRAIN:
+  lr: 0.5
+  weight_decay: 5e-4

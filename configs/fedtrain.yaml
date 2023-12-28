@@ -1,0 +1,74 @@
+# @package _global_
+defaults:
+  - _self_
+  - data: ml-1m.yaml
+  - net: fedmf.yaml
+  # - compression: none.yaml
+  - hydra: default.yaml
+  # config for hyperparameter optimization
+  - hparams_search: null
+
+paths:
+  # path to root directory
+  # this requires PROJECT_ROOT environment variable to exist
+  # PROJECT_ROOT is inferred and set by pyrootutils package in `train.py` and `eval.py`
+  root_dir: ${oc.env:EXP_DIR}
+
+  # path to data directory
+  data_dir: ???
+
+  # path to logging directory
+  log_dir: ${paths.root_dir}/outputs/
+
+  # path to output directory, created dynamically by hydra
+  # path generation pattern is specified in `configs/hydra/default.yaml`
+  # use it to store all files generated during the run, like ckpts and metrics
+  output_dir: ${hydra:runtime.output_dir}
+
+  # path to working directory
+  work_dir: ${hydra:runtime.cwd}
+  # ckpt_root: ${oc.env:CKPT_ROOT}
+
+FED:
+  num_clients: 120
+  shuffle_seed: 42
+  agg_epochs: 400
+  local_epochs: 2
+  compression_kwargs:
+    method: 'none'
+  aggregation: 'fedavg'
+  dp:
+    noise_scale: 0
+
+DATA:
+  root: '../data/Data'
+  name: 'movielens'
+  num_negatives: 4
+  test_num_ng: 99
+
+DATALOADER:
+  batch_size: 256
+  shuffle: True
+  num_workers: 0
+
+TRAIN:
+  optimizer: sgd
+  lr: 1e-2
+  weight_decay: 0
+  lr_scheduler: None
+  device: 'cuda'
+  wandb: False
+  log_interval: 10
+
+EVAL:
+  topk: 10
+  interval: 100
+
+EXP:
+  seed: 42
+  project: 'fedrec-colr'
+
+
+task_name: fedtrain
+run_name: ${DATA.name}
+# ${now:%Y-%m-%d}_${now:%H-%M-%S}

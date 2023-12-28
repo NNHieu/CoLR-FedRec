@@ -1,0 +1,14 @@
+# https://hydra.cc/docs/configure_hydra/intro/
+
+# enable color logging
+defaults:
+  - override hydra_logging: colorlog
+  - override job_logging: custom
+
+# output directory, generated dynamically on each run
+# ${now:%Y-%m-%d}_${now:%H-%M-%S}
+run:
+  dir: ${paths.log_dir}/${task_name}/${run_name}/${net.name}/bs=${DATALOADER.batch_size}_lr=${TRAIN.lr}_cl=${FED.num_clients}_lep=${FED.local_epochs}/${now:%Y-%m-%d}_${now:%H-%M-%S}
+sweep:
+  dir: ${paths.log_dir}/${task_name}/${run_name}
+  subdir: ${net.name}/bs=${DATALOADER.batch_size}_lr=${TRAIN.lr}_cl=${FED.num_clients}_lep=${FED.local_epochs}/${now:%Y-%m-%d}_${now:%H-%M-%S}

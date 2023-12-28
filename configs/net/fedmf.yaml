@@ -1,0 +1,6 @@
+init:
+  _target_: fedrec.fedmf.FedMF
+  gmf_emb_size: 64
+name: fedmf${net.init.gmf_emb_size}
+compressor:
+  name: none

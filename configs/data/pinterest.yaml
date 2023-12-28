@@ -1,0 +1,20 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+DATA:
+  root: ./dataset
+  name: 'pinterest'
+
+FED:
+  num_clients: 550
+  agg_epochs: 2000
+  local_epochs: 2
+
+DATALOADER:
+  batch_size: 64
+
+TRAIN:
+  lr: 0.25
+  weight_decay: 1e-4

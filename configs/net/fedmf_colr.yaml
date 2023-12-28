@@ -1,0 +1,6 @@
+init:
+  _target_: fedrec.fedmf_colr.FedMFCoLR
+  gmf_emb_size: 64
+  rank: 4
+
+name: fedmf${net.init.gmf_emb_size}
