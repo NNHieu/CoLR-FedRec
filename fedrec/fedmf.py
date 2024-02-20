@@ -123,7 +123,7 @@ class FedMF(FedRecModel):
         splitted_params = self.get_splited_params(dummy_private=True)
         return splitted_params['private'], splitted_params['public']
 
-    def get_splited_params(self, dummy_private=False) -> dict[str, Any]:
+    def get_splited_params(self, dummy_private=False):
         '''
         Split state dict into private and public param dict.
         '''
