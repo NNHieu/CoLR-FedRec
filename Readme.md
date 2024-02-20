@@ -33,10 +33,10 @@ To reproduce the results on MovieLens-1M, run the following command:
 python fedtrain.py -m data=ml-1m net=fedmf net.init.gmf_emb_size=1,2,4,8,16,32,64 TRAIN.log_interval=10 EVAL.interval=100
 
 # FedMF + SVD
-python fedtrain.py -m data=ml-1m net=fedmf_svd net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 compresor=svd net.compresor.rank=1,2,4,8,16,32
+python fedtrain.py -m data=ml-1m net=fedmf_svd net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 net.compressor.rank=1,2,4,8,16,32
 
 # FedMF + TopK
-python fedtrain.py -m data=ml-1m net=fedmf_topk net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 compresor=topk net.compresor.ratio=0.015625,0.03125,0.0625,0.125,0.25,0.5
+python fedtrain.py -m data=ml-1m net=fedmf_topk net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 net.compressor.ratio=0.015625,0.03125,0.0625,0.125,0.25,0.5
 
 # FedMF + CoLR
 python fedtrain.py -m data=ml-1m net=fedmf_colr net.init.gmf_emb_size=64 net.init.rank=1,2,4,6,16,32 TRAIN.log_interval=10 EVAL.interval=100
@@ -49,10 +49,10 @@ To reproduce the results on Pinterest, run the following command:
 python fedtrain.py -m data=pinterest net=fedmf net.init.gmf_emb_size=1,2,4,8,16 TRAIN.log_interval=10 EVAL.interval=100
 
 # FedMF + SVD
-python fedtrain.py -m data=ml-1m net=fedmf_svd net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 net.compresor.rank=1,2,4,8
+python fedtrain.py -m data=pinterest net=fedmf_svd net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 net.compressor.rank=1,2,4,8
 
 # FedMF + TopK
-python fedtrain.py -m data=ml-1m net=fedmf_topk net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 compresor=topk net.compresor.ratio=0.0625,0.125,0.25,0.5
+python fedtrain.py -m data=pinterest net=fedmf_topk net.init.gmf_emb_size=64 TRAIN.log_interval=10 EVAL.interval=100 net.compresor.ratio=0.0625,0.125,0.25,0.5
 
 # FedMF + CoLR
 python fedtrain.py -m data=pinterest net=fedmf_colr net.init.gmf_emb_size=16 net.init.rank=1,2,4,8 TRAIN.log_interval=10 EVAL.interval=100
@@ -64,17 +64,17 @@ python fedtrain.py -m data=pinterest net=fedmf_colr net.init.gmf_emb_size=16 net
 |---|---:|---:|---:|---:|---:|
 | FedMF | 0.93 s | 2.39 s | 24,587 KB | 927 KB | 26.52 |
 | FedMF w/ TopK@1/64 | 88.20 s | 88.06 s | 3,028 KB | 29 KB | 103.09 |
-| FedMF w/ TopK@2/64 | 182.02 | 185.59 | 6,056 KB | 58 KB | 103.83 |
-| FedMF w/ TopK@4/64 | 353.25 | 364.67 | 12,112 KB | 116 KB | 104.20 |
-| FedMF w/ TopK@8/64 | 723.45 | 750.98 | 24,225 KB | 232 KB | 104.40 |
-| FedMF w/ TopK@16/64 | 1449.90 | 1483.91 | 48,448 KB | 464 KB | 104.49 |
+| FedMF w/ TopK@2/64 | 182.02 s| 185.59 s| 6,056 KB | 58 KB | 103.83 |
+| FedMF w/ TopK@4/64 | 353.25 s| 364.67 s| 12,112 KB | 116 KB | 104.20 |
+| FedMF w/ TopK@8/64 | 723.45 s| 750.98 s| 24,225 KB | 232 KB | 104.40 |
+| FedMF w/ TopK@16/64 | 1449.90 s| 1483.91 s| 48,448 KB | 464 KB | 104.49 |
 |---|---|---|---|---|---|
-| FedMF w/ CoLR@1 | 0.07 | 0.24 | 3,073 KB | 15 KB | 206.31 |
-| FedMF w/ CoLR@2 | 0.07 | 0.25 | 3,073 KB | 29 KB | 104.63 |
-| FedMF w/ CoLR@4 | 0.07 | 0.25 | 3,073 KB | 58 KB | 52.69 |
-| FedMF w/ CoLR@8 | 0.08 | 0.25 | 3,073 KB | 116 KB | 26.44 |
-| FedMF w/ CoLR@16 | 0.15 | 0.51 | 6,147 KB | 232 KB | 26.49 |
-| FedMF w/ CoLR@32 | 0.30 | 1.03 | 12,293 KB | 464 KB | 26.51 |
+| FedMF w/ CoLR@1 | 0.07 s| 0.24 s| 3,073 KB | 15 KB | 206.31 |
+| FedMF w/ CoLR@2 | 0.07 s| 0.25 s| 3,073 KB | 29 KB | 104.63 |
+| FedMF w/ CoLR@4 | 0.07 s| 0.25 s| 3,073 KB | 58 KB | 52.69 |
+| FedMF w/ CoLR@8 | 0.08 s| 0.25 s| 3,073 KB | 116 KB | 26.44 |
+| FedMF w/ CoLR@16 | 0.15 s| 0.51 s| 6,147 KB | 232 KB | 26.49 |
+| FedMF w/ CoLR@32 | 0.30 s| 1.03 s| 12,293 KB | 464 KB | 26.51 |
 
 We implement the homomorphic encryption scheme based on [OpenFHE]().
 
