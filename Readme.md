@@ -81,3 +81,19 @@ We implement the homomorphic encryption scheme based on [OpenFHE]().
 ## Citation
 If you find this repository useful in your research, please cite our paper:
 ```
+@inproceedings{10.1145/3589334.3645702,
+  author = {Nguyen, Ngoc-Hieu and Nguyen, Tuan-Anh and Nguyen, Tuan and Hoang, Vu Tien and Le, Dung D. and Wong, Kok-Seng},
+  title = {Towards Efficient Communication and Secure Federated Recommendation System via Low-rank Training},
+  year = {2024},
+  isbn = {9798400701719},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3589334.3645702},
+  doi = {10.1145/3589334.3645702},
+  booktitle = {Proceedings of the ACM on Web Conference 2024},
+  pages = {3940–3951},
+  numpages = {12},
+  keywords = {communication efficiency, federated learning, recommendation system},
+  location = {<conf-loc>, <city>Singapore</city>, <country>Singapore</country>, </conf-loc>},
+  series = {WWW '24}
+}
